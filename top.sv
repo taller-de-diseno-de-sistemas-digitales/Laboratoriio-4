@@ -1,28 +1,32 @@
-`timescale 1ns/1ps 
 module top(
-	input clk, 
+	input clk,
+	input Btn_UP,
+	input Btn_Down,
+	input Btn_Left,
+	input Btn_Right,
 	output Hsynq,
 	output Vsynq,
 	output Vga_Clock,
-	output [7:0] Red,
-	output [7:0] Green,
-	output [7:0] Blue
-
+	output Vga_Sync,
+	output Vga_Blank,
+	output logic [7:0] Red,
+	output logic [7:0] Green,
+	output logic [7:0] Blue
 	);	
 
 	wire clk_25MHZ;
 	wire [15:0] H_Count_Value;
 	wire [15:0] V_Count_Value;
+	logic [2:0] color_Red;
+	logic [2:0] color_Green;
+	logic [2:0] color_Blue;
    clock_divider VGA_Clock_gen (clk,clk_25MHZ);
-	vga_controller VGA (clk_25MHZ, Hsynq, Vsynq, Vga_Clock, H_Count_Value, V_Count_Value);
-
-	 
-	assign Red = (((H_Count_Value < 361 && H_Count_Value > 351 || H_Count_Value < 574 && H_Count_Value > 564) && V_Count_Value < 515 && V_Count_Value > 34)||(H_Count_Value < 784 && H_Count_Value > 143  && (V_Count_Value < 199 && V_Count_Value > 189 || V_Count_Value < 359 && V_Count_Value > 349 ))) ? 8'd255 : 8'd0;
-	assign Green = (((H_Count_Value < 361 && H_Count_Value > 351 || H_Count_Value < 574 && H_Count_Value > 564) && V_Count_Value < 515 && V_Count_Value > 34)||(H_Count_Value < 784 && H_Count_Value > 143  && (V_Count_Value < 199 && V_Count_Value > 189 || V_Count_Value < 359 && V_Count_Value > 349 ))) ? 8'd255: 8'd0;
-	assign Blue = (((H_Count_Value < 361 && H_Count_Value > 351 || H_Count_Value < 574 && H_Count_Value > 564) && V_Count_Value < 515 && V_Count_Value > 34)||(H_Count_Value < 784 && H_Count_Value > 143  && (V_Count_Value < 199 && V_Count_Value > 189 || V_Count_Value < 359 && V_Count_Value > 349 ))) ? 8'd255 : 8'd0;
-	//assign Red = (H_Count_Value == 356  && V_Count_Value == 194 ) ? 8'd0 : 8'd255;
-	//assign Green = (H_Count_Value == 356  && V_Count_Value == 194) ? 8'd0: 8'd255;
-	//assign Blue = (H_Count_Value == 356  && V_Count_Value == 194) ? 8'd0 : 8'd255;
-	
-	
+	vga_controller VGA (clk_25MHZ, Hsynq, Vsynq, Vga_Clock, Vga_Sync, Vga_Blank, H_Count_Value, V_Count_Value);
+	btns_controller bnts (clk_25MHZ, H_Count_Value, V_Count_Value, Btn_UP, Btn_Down, Btn_Left, Btn_Right, color_Red, color_Green, color_Blue);
+	//assign Green = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
+	//assign Blue = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
+	//assign Red = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
+	deco_red decoR (color_Red, Red);
+	deco_green decoG (color_Green, Green);
+	deco_blue decoB (color_Blue, Blue);
 endmodule 

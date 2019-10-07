@@ -7,9 +7,12 @@ module vertical_counter(
 	
 	always@(posedge clk_25MHz) begin
 		if(enable_V_Counter == 1'b1) begin
-			if(V_Count_Value < 524 && enable_V_Counter == 1'b1)
+			if(V_Count_Value < 524 && enable_V_Counter == 1'b1)begin
 				V_Count_Value <= V_Count_Value + 1;
-			else V_Count_Value <= 0;//Reset vertical counter
+			end
+			else begin
+				V_Count_Value <= 1'b0;//Reset vertical counter
+			end
 		end
 	end 
 
