@@ -15,14 +15,16 @@ module top(
 	);	
 
 	wire clk_25MHZ;
+	wire clk_oneSecond;
 	wire [15:0] H_Count_Value;
 	wire [15:0] V_Count_Value;
 	logic [2:0] color_Red;
 	logic [2:0] color_Green;
 	logic [2:0] color_Blue;
    clock_divider VGA_Clock_gen (clk,clk_25MHZ);
+	clk_oneSecond(clk_25MHZ, clk_oneSecond);
 	vga_controller VGA (clk_25MHZ, Hsynq, Vsynq, Vga_Clock, Vga_Sync, Vga_Blank, H_Count_Value, V_Count_Value);
-	btns_controller bnts (clk_25MHZ, H_Count_Value, V_Count_Value, Btn_UP, Btn_Down, Btn_Left, Btn_Right, color_Red, color_Green, color_Blue);
+	btns_controller bnts (clk_oneSecond, H_Count_Value, V_Count_Value, Btn_UP, Btn_Down, Btn_Left, Btn_Right, color_Red, color_Green, color_Blue);
 	//assign Green = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
 	//assign Blue = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
 	//assign Red = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;

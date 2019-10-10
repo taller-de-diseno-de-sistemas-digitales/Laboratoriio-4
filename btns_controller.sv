@@ -10,10 +10,10 @@ module btns_controller (
 	output logic [3:0] Green,
 	output logic [3:0] Blue
 );
-	var [15:0] selected_square_startX = 213;
-	var [15:0] selected_square_endX = 423;
-	var [9:0] selected_square_startY = 160;
-	var [9:0] selected_square_endY = 320;
+	logic [15:0] selected_square_startX = 213;
+	logic [15:0] selected_square_endX = 426;
+	logic [9:0] selected_square_startY = 160;
+	logic [9:0] selected_square_endY = 320;
 	logic [15:0] size_squareX = 213; 
 	logic [9:0] size_squareY = 160;
 	logic press_up;
@@ -31,8 +31,8 @@ module btns_controller (
 			begin
 				if(selected_square_startY != 0) 
 					begin
-						selected_square_startY <= selected_square_startY - size_squareY;
-						selected_square_endY <= selected_square_endY - size_squareY;
+						selected_square_startY  <= selected_square_startY - size_squareY;
+						selected_square_endY  <= selected_square_endY - size_squareY;
 					end
 			end
 		else if(press_down)
@@ -40,7 +40,7 @@ module btns_controller (
 				if(selected_square_startY != 320)
 					begin
 						selected_square_startY <= selected_square_startY + size_squareY;
-						selected_square_endY <= selected_square_endY + size_squareY;
+						selected_square_endY  <= selected_square_endY  + size_squareY;
 					end
 			end
 		else if(press_left)
@@ -69,7 +69,7 @@ module btns_controller (
 				Green <= 3'b000;
 				Blue <= 3'b000;
 			end
-		else if((Xpos > selected_square_startX && Xpos < selected_square_endX && Ypos > selected_square_startY && Ypos < selected_square_endY))
+		else if((Xpos > selected_square_startX && Xpos < selected_square_endX && Ypos > selected_square_startY  && Ypos < selected_square_endY ))
 			begin
 				Red <= 3'b010;
 				Green <= 3'b010;
