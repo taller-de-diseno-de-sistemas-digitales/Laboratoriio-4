@@ -20,10 +20,10 @@ module btns_controller (
 	logic press_down;
 	logic press_left;
 	logic press_right;
-	assign press_up = ~Btn_Up;
-	assign press_down = ~Btn_Down;
-	assign press_left = ~Btn_Left;
-	assign press_right = ~Btn_Right;
+	assign press_up = Btn_Up;
+	assign press_down = Btn_Down;
+	assign press_left = Btn_Left;
+	assign press_right = Btn_Right;
 	
 	always_ff@(posedge Clk)
 	begin

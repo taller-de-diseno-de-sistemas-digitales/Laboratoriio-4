@@ -13,7 +13,11 @@ module top(
 	output logic [7:0] Green,
 	output logic [7:0] Blue
 	);	
-
+	
+	logic Btn_UPsync;
+	logic Btn_Downsync;
+	logic Btn_Leftsync;
+	logic Btn_Rightsync;
 	wire clk_25MHZ;
 	wire clk_oneSecond;
 	wire [15:0] H_Count_Value;
@@ -24,7 +28,11 @@ module top(
    clock_divider VGA_Clock_gen (clk,clk_25MHZ);
 	clk_oneSecond(clk_25MHZ, clk_oneSecond);
 	vga_controller VGA (clk_25MHZ, Hsynq, Vsynq, Vga_Clock, Vga_Sync, Vga_Blank, H_Count_Value, V_Count_Value);
-	btns_controller bnts (clk_oneSecond, H_Count_Value, V_Count_Value, Btn_UP, Btn_Down, Btn_Left, Btn_Right, color_Red, color_Green, color_Blue);
+	sync_btn up (clk_25MHZ,Btn_UP,Btn_UPsync);
+	sync_btn down (clk_25MHZ,Btn_Down,Btn_Downsync);
+	sync_btn left (clk_25MHZ,Btn_Left,Btn_Leftsync);
+	sync_btn right (clk_25MHZ,Btn_Right,Btn_Rightsync);
+	btns_controller bnts (clk_25MHZ, H_Count_Value, V_Count_Value, Btn_UPsync, Btn_Downsync, Btn_Leftsync, Btn_Rightsync, color_Red, color_Green, color_Blue);
 	//assign Green = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
 	//assign Blue = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
 	//assign Red = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
