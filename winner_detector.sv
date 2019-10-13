@@ -13,7 +13,7 @@ module winner_detector(
 	winner_detect_3 u5(pos2,pos5,pos8,win5,who5);// (2,5,8);
 	winner_detect_3 u6(pos3,pos6,pos9,win6,who6);// (3,6,9);
 	winner_detect_3 u7(pos1,pos5,pos9,win7,who7);// (1,5,9);
-	winner_detect_3 u8(pos3,pos5,pos6,win8,who8);// (3,5,7);
+	winner_detect_3 u8(pos3,pos5,pos7,win8,who8);// (3,5,7);
 	assign winner = (((((((win1 | win2) | win3) | win4) | win5) | win6) | win7) | win8);
 	assign who = (((((((who1 | who2) | who3) | who4) | who5) | who6) | who7) | who8);
 	
