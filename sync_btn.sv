@@ -17,7 +17,7 @@ begin
 	begin
 		counter <= counter+1;
 		bounce <= 0;
-		if(counter == 12500000)begin
+		if(counter == 9375000)begin
 			enable_btn <= ~enable_btn;
 			counter <= 0;
 		end

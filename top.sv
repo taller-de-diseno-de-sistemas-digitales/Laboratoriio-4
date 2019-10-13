@@ -1,9 +1,8 @@
 module top(
 	input clk,
-	input Btn_UP,
-	input Btn_Down,
-	input Btn_Left,
-	input Btn_Right,
+	input rst,
+	input Btn,
+	input SelBtn,
 	output Hsynq,
 	output Vsynq,
 	output Vga_Clock,
@@ -14,10 +13,9 @@ module top(
 	output logic [7:0] Blue
 	);	
 	
-	logic Btn_UPsync;
-	logic Btn_Downsync;
-	logic Btn_Leftsync;
-	logic Btn_Rightsync;
+	logic Btnsync;
+	logic rstsync;
+	logic SelBtnsync;
 	wire clk_25MHZ;
 	wire clk_oneSecond;
 	wire [15:0] H_Count_Value;
@@ -25,17 +23,18 @@ module top(
 	logic [2:0] color_Red;
 	logic [2:0] color_Green;
 	logic [2:0] color_Blue;
+	logic [15:0] startX, endX;
+	logic [9:0] startY, endY;
+	
    clock_divider VGA_Clock_gen (clk,clk_25MHZ);
 	clk_oneSecond(clk_25MHZ, clk_oneSecond);
 	vga_controller VGA (clk_25MHZ, Hsynq, Vsynq, Vga_Clock, Vga_Sync, Vga_Blank, H_Count_Value, V_Count_Value);
-	sync_btn up (clk_25MHZ,Btn_UP,Btn_UPsync);
-	sync_btn down (clk_25MHZ,Btn_Down,Btn_Downsync);
-	sync_btn left (clk_25MHZ,Btn_Left,Btn_Leftsync);
-	sync_btn right (clk_25MHZ,Btn_Right,Btn_Rightsync);
-	btns_controller bnts (clk_25MHZ, H_Count_Value, V_Count_Value, Btn_UPsync, Btn_Downsync, Btn_Leftsync, Btn_Rightsync, color_Red, color_Green, color_Blue);
-	//assign Green = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
-	//assign Blue = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
-	//assign Red = ((H_Count_Value == 213 || H_Count_Value == 426) || (V_Count_Value == 160 || V_Count_Value == 320)) ? 8'b00000000 : 8'b11111111;
+	sync_btn btn (clk_25MHZ,Btn,Btnsync);
+	sync_btn rstbtn (clk_25MHZ,rst,rstsync);
+	sync_btn selbtn (clk_25MHZ,SelBtn,SelBtnsync);
+	btns_controller bnts (clk_25MHZ, rstsync, Btnsync, SelBtnsync, startX, endX, startY, endY);
+	//tic_tac_toe_game game (clk,rstsync,playO,playX);
+	color_controller colorctrl (clk_25MHZ,H_Count_Value, V_Count_Value, startX, endX, startY, endY,color_Red, color_Green, color_Blue);
 	deco_red decoR (color_Red, Red);
 	deco_green decoG (color_Green, Green);
 	deco_blue decoB (color_Blue, Blue);

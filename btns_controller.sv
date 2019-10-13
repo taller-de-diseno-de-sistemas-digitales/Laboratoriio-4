@@ -1,87 +1,95 @@
 module btns_controller ( 
 	input Clk,
-	input [15:0] Xpos,
-	input [15:0] Ypos,
-	input Btn_Up,
-	input Btn_Down,
-	input Btn_Left,
-	input Btn_Right,
-	output logic [3:0] Red,
-	output logic [3:0] Green,
-	output logic [3:0] Blue
+	input rst,
+	input Btn,
+	input SelBtn,
+	output [15:0] selected_square_startX,
+	output [15:0] selected_square_endX,
+	output [9:0] selected_square_startY,
+	output [9:0] selected_square_endY
 );
-	logic [15:0] selected_square_startX = 213;
-	logic [15:0] selected_square_endX = 426;
-	logic [9:0] selected_square_startY = 160;
-	logic [9:0] selected_square_endY = 320;
-	logic [15:0] size_squareX = 213; 
-	logic [9:0] size_squareY = 160;
-	logic press_up;
-	logic press_down;
-	logic press_left;
-	logic press_right;
-	assign press_up = Btn_Up;
-	assign press_down = Btn_Down;
-	assign press_left = Btn_Left;
-	assign press_right = Btn_Right;
+
+	logic press_btn;
+	logic press_rst;
+	logic [3:0] selected_square;
+	assign press_btn = Btn;
+	assign press_rst = rst;
+	
+	btn_selector btn (press_btn,press_rst,selected_square);
 	
 	always_ff@(posedge Clk)
 	begin
-		if(press_up)
-			begin
-				if(selected_square_startY != 0) 
-					begin
-						selected_square_startY  <= selected_square_startY - size_squareY;
-						selected_square_endY  <= selected_square_endY - size_squareY;
-					end
+		case(selected_square)
+			4'd0: begin
+			selected_square_startX <= 0;
+			selected_square_endX <= 213;
+			selected_square_startY <= 0;
+			selected_square_endY <= 160;
 			end
-		else if(press_down)
-			begin
-				if(selected_square_startY != 320)
-					begin
-						selected_square_startY <= selected_square_startY + size_squareY;
-						selected_square_endY  <= selected_square_endY  + size_squareY;
-					end
+			
+			4'd1: begin
+			selected_square_startX <= 0;
+			selected_square_endX <= 213;
+			selected_square_startY <= 160;
+			selected_square_endY <= 320;
 			end
-		else if(press_left)
-			begin
-				if(selected_square_startX != 0)
-					begin
-						selected_square_startX <= selected_square_startX - size_squareX;
-						selected_square_endX <= selected_square_endX - size_squareX;
-					end
+			
+			4'd2: begin
+			selected_square_startX <= 0;
+			selected_square_endX <= 213;
+			selected_square_startY <= 320;
+			selected_square_endY <= 480;
 			end
-		else if(press_right)
-			begin
-				if(selected_square_startX != 426)
-					begin
-						selected_square_startX <= selected_square_startX + size_squareX;
-						selected_square_endX <= selected_square_endX + size_squareX;
-					end
+			
+			4'd3: begin
+			selected_square_startX <= 213;
+			selected_square_endX <= 426;
+			selected_square_startY <= 0;
+			selected_square_endY <= 160;
 			end
-	end
-	
-	always_comb
-	begin
-		if(Ypos == 160 || Ypos == 320 || Xpos == 213 || Xpos == 426)
-			begin
-				Red <= 3'b000;
-				Green <= 3'b000;
-				Blue <= 3'b000;
+			
+			4'd4: begin
+			selected_square_startX <= 213;
+			selected_square_endX <= 426;
+			selected_square_startY <= 160;
+			selected_square_endY <= 320;
 			end
-		else if((Xpos > selected_square_startX && Xpos < selected_square_endX && Ypos > selected_square_startY  && Ypos < selected_square_endY ))
-			begin
-				Red <= 3'b010;
-				Green <= 3'b010;
-				Blue <= 3'b010;
+			
+			4'd5: begin
+			selected_square_startX <= 213;
+			selected_square_endX <= 426;
+			selected_square_startY <= 320;
+			selected_square_endY <= 480;
 			end
-		else
-			begin
-				Red <= 3'b001;
-				Green <= 3'b001;
-				Blue <= 3'b001;
+			
+			4'd6: begin
+			selected_square_startX <= 426;
+			selected_square_endX <= 640;
+			selected_square_startY <= 0;
+			selected_square_endY <= 160;
 			end
-	
+			
+			4'd7: begin
+			selected_square_startX <= 426;
+			selected_square_endX <= 640;
+			selected_square_startY <= 160;
+			selected_square_endY <= 320;
+			end
+			
+			4'd8: begin
+			selected_square_startX <= 426;
+			selected_square_endX <= 640;
+			selected_square_startY <= 320;
+			selected_square_endY <= 480;
+			end
+			
+			default: begin
+			selected_square_startX <= 0;
+			selected_square_endX <= 213;
+			selected_square_startY <= 0;
+			selected_square_endY <= 160;
+			end	
+		endcase
 	end
 
 endmodule 
