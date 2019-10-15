@@ -44,3 +44,35 @@ set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:02:18  SEPTEMBER 30, 
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name BOARD "DE1-SoC Board"
+set_global_assignment -name SYSTEMVERILOG_FILE winner_detector.sv
+set_global_assignment -name SYSTEMVERILOG_FILE winner_detect_3.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vga_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vertical_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE top1.sv
+set_global_assignment -name SYSTEMVERILOG_FILE top_tbsv.sv
+set_global_assignment -name SYSTEMVERILOG_FILE top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tic_tac_toe_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tic_tac_toe_game.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sync_btn.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sum.sv
+set_global_assignment -name SYSTEMVERILOG_FILE positions_registers.sv
+set_global_assignment -name SYSTEMVERILOG_FILE position_decoder.sv
+set_global_assignment -name SYSTEMVERILOG_FILE no_space_detector.sv
+set_global_assignment -name SYSTEMVERILOG_FILE horizontal_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fsm.sv
+set_global_assignment -name SYSTEMVERILOG_FILE deco_red.sv
+set_global_assignment -name SYSTEMVERILOG_FILE deco_green.sv
+set_global_assignment -name SYSTEMVERILOG_FILE deco_blue.sv
+set_global_assignment -name SYSTEMVERILOG_FILE color_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clock_divider_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clock_divider.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clk_oneSecond.sv
+set_global_assignment -name SYSTEMVERILOG_FILE btns_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE btn_sync_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE btn_selector.sv
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name QIP_FILE Sprite1.qip
+set_global_assignment -name QIP_FILE Sprite2.qip
