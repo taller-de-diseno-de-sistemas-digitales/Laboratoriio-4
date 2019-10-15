@@ -1,0 +1,11 @@
+module fsm (
+	input clk, //
+	input rst,
+	input playX,
+	input playO,
+	input illegal_move,
+	input no_space,
+	input win,
+	output reg O_play,
+	output reg X_play
+	);

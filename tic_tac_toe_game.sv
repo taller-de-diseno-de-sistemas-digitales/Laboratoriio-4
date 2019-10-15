@@ -3,7 +3,8 @@ module tic_tac_toe_game(
 	input rst,
 	input playO,
 	input playX,
-	input [3:0] playerX_position, playerO_position,
+	input [3:0] playerX_position,
+	input [3:0] playerO_position,
 	output wire [1:0] pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,
 	output wire [1:0]	who
 	);
