@@ -1,5 +1,8 @@
 module deco (input [2:0] color,	
-             output logic [23:0] RGB);
+             output logic [3:0] R,
+				 output logic [3:0] G,
+				 output logic [3:0] B
+				 );
 
 // 0 - Fondo
 // 1 - 0x000000
@@ -13,14 +16,46 @@ module deco (input [2:0] color,
 				 
 always_comb
 	case (color)
-	3'd0: RGB = 24'hAAAAAA;
-	3'd1: RGB = 24'h000000;
-	3'd2: RGB = 24'hffffff;
-	3'd3: RGB = 24'hFF1551;
-	3'd4: RGB = 24'hbf8718;
-	3'd5: RGB = 24'h5eff00;
-	3'd6: RGB = 24'h008fff;
-	3'd7: RGB = 24'h02006b;
+	3'd0: begin
+	R <= 4'b0001;
+	G <= 4'b0001;
+	B <= 4'b0001;
+	end
+	3'd1: begin
+	R <= 4'b0101;
+	G <= 4'b0101;
+	B <= 4'b0101;
+	end
+	3'd2: begin
+	R <= 4'b000;
+	G <= 4'b000;
+	B <= 4'b000;
+	end
+	3'd3: begin
+	R <= 4'b0001;
+	G <= 4'b0000;
+	B <= 4'b0000;
+	end
+	3'd4: begin
+	R <= 4'b0001;
+	G <= 4'b0001;
+	B <= 4'b0001;
+	end
+	3'd5: begin
+	R <= 4'b0000;
+	G <= 4'b0000;
+	B <= 4'b0001;
+	end
+	3'd6: begin
+	R <= 4'b0000;
+	G <= 4'b0001;
+	B <= 4'b0000;
+	end
+	3'd7: begin
+	R <= 4'b0110;
+	G <= 4'b0;
+	B <= 4'b0000;
+	end
 	endcase
 endmodule
 //

@@ -37,8 +37,8 @@ module top(
 	sync_btn rstbtn (clk_25MHZ,rst,rstsync);
 	sync_btn selbtn (clk_25MHZ,SelBtn,SelBtnsync);
 	btns_controller bnts (clk_25MHZ, rstsync, Btnsync, SelBtnsync, startX, endX, startY, endY, playX, playO, position);
-	tic_tac_toe_game game (clk,rstsync,playO,playX,position,positon,pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,who);
-	color_controller colorctrl (clk_25MHZ,H_Count_Value, V_Count_Value, startX, endX, startY, endY, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, color_Red, color_Green, color_Blue);
+	tic_tac_toe_game game (SelBtnsync,rstsync,playO,playX,position,position,pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,who);
+	color_controller colorctrl (clk_25MHZ,rstsync,H_Count_Value, V_Count_Value, startX, endX, startY, endY, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, color_Red, color_Green, color_Blue);
 	deco_red decoR (color_Red, Red);
 	deco_green decoG (color_Green, Green);
 	deco_blue decoB (color_Blue, Blue);

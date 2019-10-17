@@ -1,18 +1,21 @@
 module sprite_top(input clk, input [9:0] posx,
 						posy, pixelx, pixely,
-						output [23:0] RGB,
+						input enable,
+						output [3:0] R,
+						output [3:0] G,
+						output [3:0] B,
 						output visible);
-//ROM
-logic [11:0] address;
+//ROM 
+logic [15:0] address;
 logic [2:0] color;
-rom_sprite  ROM (address,clk, color);	
+Xsprite ROM (address,clk, color);	
 //DECO
-deco DECO (color, RGB);
+deco DECO (color, R, G, B);
 logic xm63, ym63;
 //ADDRESS GENERATION
 addressGen ADDRESSS(pixelx, pixely,
-            posx, posy, xm63, ym63,address);	
+            posx, posy, xm63, ym63,address);	//genera address para recorrer el rom
 //VISIBLE LOGIC			
-visibleLogic VIS (xm63, ym63,color, visible);						
+visibleLogic VIS (xm63, ym63,color,enable,visible);						
 endmodule  
 //

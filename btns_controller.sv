@@ -23,7 +23,7 @@ module btns_controller (
 	
 	assign position = selected_square;
 	
-	always_ff@(posedge Clk)
+	always@(posedge Clk)
 	begin
 		case(selected_square)
 			4'd0: begin
