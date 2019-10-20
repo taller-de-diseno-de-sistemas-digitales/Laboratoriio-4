@@ -6,7 +6,8 @@ module tic_tac_toe_game(
 	input [3:0] playerX_position,
 	input [3:0] playerO_position,
 	output wire [1:0] pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,
-	output wire [1:0]	who
+	output wire [1:0]	who,
+	output logic [8:0] winner_play
 	);
 	
 	wire [15:0] playerX_en;
@@ -36,6 +37,8 @@ module tic_tac_toe_game(
    pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9, 
    no_space
    );
+	
+	winner_play_module wpm(clk,who,pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,winner_play);
 	
 	fsm tic_tac_toe_controller(
 	clk,

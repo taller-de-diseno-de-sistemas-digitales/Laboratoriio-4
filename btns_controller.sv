@@ -12,13 +12,9 @@ module btns_controller (
 	output [3:0] position
 );
 
-	logic press_btn;
-	logic press_rst;
 	logic [3:0] selected_square;
-	assign press_btn = Btn;
-	assign press_rst = rst;
 	
-	btn_selector btn (press_btn,press_rst,selected_square);
+	btn_selector btn (Btn,rst,selected_square);
 	square_selection square_sel (SelBtn,playX,playO);
 	
 	assign position = selected_square;

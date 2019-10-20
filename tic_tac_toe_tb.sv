@@ -19,6 +19,7 @@ module tic_tac_toe_tb;
 	wire [1:0] pos8;
 	wire [1:0] pos9;
 	wire [1:0] who;
+	wire [8:0] winner_play;
 	
 	tic_tac_toe_game DUT(
 		.clk(clk),
@@ -36,8 +37,9 @@ module tic_tac_toe_tb;
 		.pos7(pos7),
 		.pos8(pos8),
 		.pos9(pos9),
-		.who(who)
-	);
+		.who(who),
+		.winner_play(winner_play)
+	); 
 	
 	initial begin
 		clk = 0;
@@ -57,7 +59,7 @@ module tic_tac_toe_tb;
 	  playO = 1'b1;
 	  playX = 0;
 	  playerX_position = 0;
-	  playerO_position = 4;
+	  playerO_position = 3;
 	  #50;
 	  playX = 1;
 	  playO = 0;
@@ -65,8 +67,8 @@ module tic_tac_toe_tb;
 	  rst = 0;
 	  playO = 1;
 	  playX = 0;
-	  playerX_position = 1;
-	  playerO_position = 8;
+	  playerX_position = 2;
+	  playerO_position = 4;
 	  #50;
 	  playX = 1;
 	  playO = 0;  
@@ -74,14 +76,54 @@ module tic_tac_toe_tb;
 	  rst = 0;
 	  playO = 1;
 	  playX = 0;
-	  playerX_position = 2;
-	  playerO_position = 6;
+	  playerX_position = 6;
+	  playerO_position = 5;
+	  #50;
+	  playX = 1;
+	  playO = 0; 
+	  #50;
+	  playX = 0;
+	  playO = 0;
+	  #50;  
+	 
+	
+	  rst = 1;
+	  playO = 1'b0;
+	  playerX_position = 0;
+	  playerO_position = 0;
+	  playX = 0;
+	  #100;
+	  rst = 0;
+	  #100;
+	  playO = 1'b1;
+	  playX = 0;
+	  playerX_position = 0;
+	  playerO_position = 2;
+	  #50;
+	  playX = 1;
+	  playO = 0;
+	  #100;
+	  rst = 0;
+	  playO = 1;
+	  playX = 0;
+	  playerX_position = 3;
+	  playerO_position = 5;
+	  #50;
+	  playX = 1;
+	  playO = 0;  
+	  #100;
+	  rst = 0;
+	  playO = 1;
+	  playX = 0;
+	  playerX_position = 6;
+	  playerO_position = 8;
 	  #50;
 	  playX = 1;
 	  playO = 0; 
 	  #50
 	  playX = 0;
-	  playO = 0;   
+	  playO = 0;  
+	  
   end
 
 	

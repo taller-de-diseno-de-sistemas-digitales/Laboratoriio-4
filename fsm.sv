@@ -44,6 +44,10 @@ module fsm (
 			X_play <= 1'b0;
 			if(illegal_move == 1'b0)
 				next_state <= PLAYERX;
+		else if(no_space == 1'b1 || win == 1'b1)
+		begin
+			next_state <= GAME_DONE;
+		end
 			else
 				next_state <= IDLE;
 		end

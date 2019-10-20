@@ -7,6 +7,8 @@ module color_controller(
 	input [15:0] selected_square_endX,
 	input [9:0] selected_square_startY,
 	input [9:0] selected_square_endY,
+	input [1:0] who,
+	input [8:0] winner_play,
 	input [1:0] pos1,
 	input [1:0] pos2,
 	input [1:0] pos3,
@@ -150,15 +152,9 @@ module color_controller(
 		end
 		else if(Ypos == 160 || Ypos == 320 || Xpos == 213 || Xpos == 426)
 			begin
-				Red <= 4'b000;
-				Green <= 4'b000;
-				Blue <= 4'b000;
-			end
-		else if(Xpos > selected_square_startX && Xpos < selected_square_endX && Ypos > selected_square_startY  && Ypos < selected_square_endY && ~(visibleX1 || visibleO1 || visibleX2 || visibleO2 || visibleX3 || visibleO3 || visibleX4 || visibleO4 || visibleX5 || visibleO5 || visibleX6 || visibleO6 || visibleX7 || visibleO7 || visibleX8 || visibleO8 || visibleX9 || visibleO9))
-			begin
-				Red <= 4'b010;
-				Green <= 4'b010;
-				Blue <= 4'b010;
+					Red <= 4'b000;
+					Green <= 4'b000;
+					Blue <= 4'b000;
 			end
 		else if(visibleX1)
 		begin
@@ -268,177 +264,236 @@ module color_controller(
 			Green <= gsO9;
 			Blue <= bsO9;
 		end
-		//Pos1
-		else if(Xpos > 0 && Xpos < 213 && Ypos > 0 && Ypos < 160 && ~(visibleX1 || visibleO1) )
+		
+		else if((Xpos >= selected_square_startX) && (Xpos < selected_square_endX) && (Ypos > selected_square_startY)  && (Ypos < selected_square_endY) && ~(visibleX1 || visibleO1 || visibleX2 || visibleO2 || visibleX3 || visibleO3 || visibleX4 || visibleO4 || visibleX5 || visibleO5 || visibleX6 || visibleO6 || visibleX7 || visibleO7 || visibleX8 || visibleO8 || visibleX9 || visibleO9))
 		begin
+			if(who==2'b00)
+			begin
+			Red <= 4'b0010;
+			Green <= 4'b0010;
+			Blue <= 4'b0010;
+			end
+			else
+			begin
 			Red <= 4'b0001;
 			Green <= 4'b0001;
 			Blue <= 4'b0001;
-			if(pos1 == 2'b10)
+			end
+		end	
+		//Pos1
+		else if(Xpos >= 0 && Xpos < 213 && Ypos > 0 && Ypos < 160 && ~(visibleX1 || visibleO1))
+		begin
+			if(winner_play[0])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos1 == 2'b10)
 			begin
 				enableO1 <= 1'b1;
 			end
-			else if(pos1 == 2'b01)
+		else if(pos1 == 2'b01)
 			begin
 				enableX1 <= 1'b1;
-			end
-			else begin
-				enableO1 <= 1'b0;
-				enableX1 <= 1'b0;
 			end
 		end
 		//Pos2
 		else if(Xpos > 213 && Xpos < 426 && Ypos > 0 && Ypos < 160 && ~(visibleX2 || visibleO2))
 		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos2 == 2'b10)
+			if(winner_play[1])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos2 == 2'b10)
 			begin
 				enableO2 <= 1'b1;
 			end
-			else if(pos2 == 2'b01)
+		else if(pos2 == 2'b01)
 			begin
 				enableX2 <= 1'b1;
-			end
-			else begin
-				enableO2 <= 1'b0;
-				enableX2 <= 1'b0;
 			end
 		end
 		//Pos3
 		else if(Xpos > 426 && Xpos < 640 && Ypos > 0 && Ypos < 160 && ~(visibleX3 || visibleO3))
 		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos3 == 2'b10)
+			if(winner_play[2])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos3 == 2'b10)
 			begin
 				enableO3 <= 1'b1;
 			end
-			else if(pos3 == 2'b01)
+		else if(pos3 == 2'b01)
 			begin
 				enableX3 <= 1'b1;
 			end
-			else begin
-				enableO3 <= 1'b0;
-				enableX3 <= 1'b0;
-			end
 		end
 		//Pos4
-		else if(Xpos > 0 && Xpos < 213 && Ypos > 160 && Ypos < 320 && ~(visibleX4 || visibleO4))
+		else if(Xpos >= 0 && Xpos < 213 && Ypos > 160 && Ypos < 320 && ~(visibleX4 || visibleO4))
 		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos4 == 2'b10)
+			if(winner_play[3])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos4 == 2'b10)
 			begin
 				enableO4 <= 1'b1;
 			end
-			else if(pos4 == 2'b01)
+		else if(pos4 == 2'b01)
 			begin
 				enableX4 <= 1'b1;
-			end
-			else begin
-				enableO4 <= 1'b0;
-				enableX4 <= 1'b0;
 			end
 		end
 		//Pos5
 		else if(Xpos > 213 && Xpos < 426 && Ypos > 160 && Ypos < 320 && ~(visibleX5 || visibleO5))
 		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos5 == 2'b10)
+			if(winner_play[4])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos5 == 2'b10)
 			begin
 				enableO5 <= 1'b1;
 			end
-			else if(pos5 == 2'b01)
+		else if(pos5 == 2'b01)
 			begin
 				enableX5 <= 1'b1;
-			end
-			else begin
-				enableO5 <= 1'b0;
-				enableX5 <= 1'b0;
 			end
 		end
 		//pos6
 		else if(Xpos > 426 && Xpos < 640 && Ypos > 160 && Ypos < 320 && ~(visibleX6 || visibleO6))
 		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos6 == 2'b10)
+			if(winner_play[5])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos6 == 2'b10)
 			begin
 				enableO6 <= 1'b1;
 			end
-			else if(pos6 == 2'b01)
+		else if(pos6 == 2'b01)
 			begin
 				enableX6 <= 1'b1;
 			end
-			else begin
-				enableO6 <= 1'b0;
-				enableX6 <= 1'b0;
-			end
 		end
 		//Pos7
-		else if(Xpos > 0 && Xpos < 213 && Ypos > 320 && Ypos < 480 && ~(visibleX7 || visibleO7))
+		else if(Xpos >= 0 && Xpos < 213 && Ypos > 320 && Ypos < 480 && ~(visibleX7 || visibleO7))
 		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos7 == 2'b10)
+			if(winner_play[6])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos7 == 2'b10)
 			begin
 				enableO7 <= 1'b1;
 			end
-			else if(pos7 == 2'b01)
+		else if(pos7 == 2'b01)
 			begin
 				enableX7 <= 1'b1;
-			end
-			else begin
-				enableO7 <= 1'b0;
-				enableX7 <= 1'b0;
 			end
 		end
 		//Pos8
 		else if(Xpos > 213 && Xpos < 426 && Ypos > 320 && Ypos < 480 && ~(visibleX8 || visibleO8))
 		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos8 == 2'b10)
+			if(winner_play[7])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos8 == 2'b10)
 			begin
 				enableO8 <= 1'b1;
 			end
-			else if(pos8 == 2'b01)
+		else if(pos8 == 2'b01)
 			begin
 				enableX8 <= 1'b1;
-			end
-			else begin
-				enableO8 <= 1'b0;
-				enableX8 <= 1'b0;
 			end
 		end
 		//Pos9
 		else if(Xpos > 426 && Xpos < 640 && Ypos > 320 && Ypos < 480 && ~(visibleX9 || visibleO9))
-		begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			if(pos9 == 2'b10)
+			if(winner_play[8])
+			begin
+				Red <= 4'b0100;
+				Green <= 4'b0100;
+				Blue <= 4'b0100;
+			end
+			else
+			begin
+				Red <= 4'b0001;
+				Green <= 4'b0001;
+				Blue <= 4'b0001;
+			end
+		   if(pos9 == 2'b10)
 			begin
 				enableO9 <= 1'b1;
 			end
-			else if(pos9 == 2'b01)
+		else if(pos9 == 2'b01)
 			begin
 				enableX9 <= 1'b1;
 			end
-			else begin
-				enableO9 <= 1'b0;
-				enableX9 <= 1'b0;
-			end
-		end
 	end
 	
 endmodule 
