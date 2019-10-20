@@ -1,4 +1,4 @@
-`timescale 1ns/1ps 
+
 module horizontal_counter(
 	input clk_25MHz,
 	output reg enable_V_Counter = 0,	

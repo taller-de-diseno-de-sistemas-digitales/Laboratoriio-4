@@ -9,11 +9,11 @@ reg [24:0] counter;
 
 always_ff@(posedge clk)
 begin
-	if(~btn && enable_btn)begin
+	if(~btn && ~enable_btn)begin
 		bounce <= 1; 
 		enable_btn <= ~enable_btn;
 	end
-	else
+	else 
 	begin
 		counter <= counter+1;
 		bounce <= 0;

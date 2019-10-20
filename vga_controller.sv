@@ -5,7 +5,7 @@ module vga_controller(
 	output Vga_Clock,
 	output Vga_Sync,
 	output Vga_Blank,
-	output [15:0] H_Count_Value,
+	output [15:0] H_Count_Value, 
 	output [15:0] V_Count_Value
 );
 	wire enable_V_Counter;

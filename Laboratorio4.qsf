@@ -38,9 +38,100 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY Laboratorio4
+set_global_assignment -name TOP_LEVEL_ENTITY fsm
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:02:18  SEPTEMBER 30, 2019"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name BOARD "DE1-SoC Board"
+set_global_assignment -name SYSTEMVERILOG_FILE winner_detector.sv
+set_global_assignment -name SYSTEMVERILOG_FILE winner_detect_3.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vga_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE vertical_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE top_tbsv.sv
+set_global_assignment -name SYSTEMVERILOG_FILE top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tic_tac_toe_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE tic_tac_toe_game.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sync_btn.sv
+set_global_assignment -name SYSTEMVERILOG_FILE positions_registers.sv
+set_global_assignment -name SYSTEMVERILOG_FILE position_decoder.sv
+set_global_assignment -name SYSTEMVERILOG_FILE no_space_detector.sv
+set_global_assignment -name SYSTEMVERILOG_FILE horizontal_counter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE fsm.sv
+set_global_assignment -name SYSTEMVERILOG_FILE deco_red.sv
+set_global_assignment -name SYSTEMVERILOG_FILE deco_green.sv
+set_global_assignment -name SYSTEMVERILOG_FILE deco_blue.sv
+set_global_assignment -name SYSTEMVERILOG_FILE color_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clock_divider_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clock_divider.sv
+set_global_assignment -name SYSTEMVERILOG_FILE clk_oneSecond.sv
+set_global_assignment -name SYSTEMVERILOG_FILE btns_controller.sv
+set_global_assignment -name SYSTEMVERILOG_FILE btn_sync_tb.sv
+set_global_assignment -name SYSTEMVERILOG_FILE btn_selector.sv
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name SYSTEMVERILOG_FILE winner_detector_tb.sv
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (SystemVerilog)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "SYSTEMVERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH fsm_tb -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME winner_detector_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id winner_detector_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME winner_detector_tb -section_id winner_detector_tb
+set_global_assignment -name SYSTEMVERILOG_FILE winner_detect_3_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME winner_detect_3_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id winner_detect_3_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME winner_detect_3_tb -section_id winner_detect_3_tb
+set_global_assignment -name SYSTEMVERILOG_FILE vga_controller_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME vga_controller_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id vga_controller_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME vga_controller_tb -section_id vga_controller_tb
+set_global_assignment -name SYSTEMVERILOG_FILE vertical_counter_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME vertical_counter_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id vertical_counter_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME vertical_counter_tb -section_id vertical_counter_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME top1_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id top1_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME top1_tb -section_id top1_tb
+set_global_assignment -name SYSTEMVERILOG_FILE sync_btn_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME sync_btn_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id sync_btn_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME sync_btn_tb -section_id sync_btn_tb
+set_global_assignment -name SYSTEMVERILOG_FILE positions_registers_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME positions_registers_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id positions_registers_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME positions_registers_tb -section_id positions_registers_tb
+set_global_assignment -name SYSTEMVERILOG_FILE position_decoder_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME position_decoder_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id position_decoder_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME position_decoder_tb -section_id position_decoder_tb
+set_global_assignment -name SYSTEMVERILOG_FILE no_space_detector_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME no_space_detector_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id no_space_detector_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME no_space_detector_tb -section_id no_space_detector_tb
+set_global_assignment -name SYSTEMVERILOG_FILE horizontal_counter_tb.sv
+set_global_assignment -name EDA_TEST_BENCH_NAME horizontal_counter_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id horizontal_counter_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME horizontal_counter_tb -section_id horizontal_counter_tb
+set_global_assignment -name SYSTEMVERILOG_FILE fsm_tb.sv
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name EDA_TEST_BENCH_FILE winner_detector_tb.sv -section_id winner_detector_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE winner_detect_3_tb.sv -section_id winner_detect_3_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE vga_controller_tb.sv -section_id vga_controller_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE vertical_counter_tb.sv -section_id vertical_counter_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE top1_tb.sv -section_id top1_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE sync_btn_tb.sv -section_id sync_btn_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE positions_registers_tb.sv -section_id positions_registers_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE position_decoder_tb.sv -section_id position_decoder_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE no_space_detector_tb.sv -section_id no_space_detector_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE horizontal_counter_tb.sv -section_id horizontal_counter_tb
+set_global_assignment -name EDA_TEST_BENCH_NAME fsm_tb -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME fsm_tb -section_id fsm_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE fsm_tb.sv -section_id fsm_tb
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
