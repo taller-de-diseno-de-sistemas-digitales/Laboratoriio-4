@@ -1,10 +1,18 @@
 module winner_detector(
 	input [1:0] pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,
+	output win1,
+	output win2,
+	output win3,
+	output win4,
+	output win5,
+	output win6,
+	output win7,
+	output win8,
 	output wire winner,
 	output wire [1:0] who
 	);
 	
-	wire win1,win2,win3,win4,win5,win6,win7,win8;
+	//wire win1,win2,win3,win4,win5,win6,win7,win8;
 	wire [1:0] who1,who2,who3,who4,who5,who6,who7,who8;
 	winner_detect_3 u1(pos1,pos2,pos3,win1,who1);// (1,2,3);
 	winner_detect_3 u2(pos4,pos5,pos6,win2,who2);// (4,5,6);

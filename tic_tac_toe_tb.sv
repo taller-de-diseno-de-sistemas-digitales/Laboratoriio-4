@@ -58,7 +58,7 @@ module tic_tac_toe_tb;
 	  #100;
 	  playO = 1'b1;
 	  playX = 0;
-	  playerX_position = 0;
+	  playerX_position = 1;
 	  playerO_position = 3;
 	  #50;
 	  playX = 1;
@@ -67,63 +67,23 @@ module tic_tac_toe_tb;
 	  rst = 0;
 	  playO = 1;
 	  playX = 0;
-	  playerX_position = 2;
-	  playerO_position = 4;
-	  #50;
-	  playX = 1;
-	  playO = 0;  
-	  #100;
-	  rst = 0;
-	  playO = 1;
-	  playX = 0;
-	  playerX_position = 6;
-	  playerO_position = 5;
-	  #50;
-	  playX = 1;
-	  playO = 0; 
-	  #50;
-	  playX = 0;
-	  playO = 0;
-	  #50;  
-	 
-	
-	  rst = 1;
-	  playO = 1'b0;
-	  playerX_position = 0;
-	  playerO_position = 0;
-	  playX = 0;
-	  #100;
-	  rst = 0;
-	  #100;
-	  playO = 1'b1;
-	  playX = 0;
-	  playerX_position = 0;
+	  playerX_position = 4;
 	  playerO_position = 2;
 	  #50;
 	  playX = 1;
-	  playO = 0;
+	  playO = 0;  
 	  #100;
 	  rst = 0;
 	  playO = 1;
 	  playX = 0;
-	  playerX_position = 3;
+	  playerX_position = 7;
 	  playerO_position = 5;
 	  #50;
 	  playX = 1;
-	  playO = 0;  
-	  #100;
-	  rst = 0;
-	  playO = 1;
-	  playX = 0;
-	  playerX_position = 6;
-	  playerO_position = 8;
-	  #50;
-	  playX = 1;
 	  playO = 0; 
-	  #50
+	  #50;
 	  playX = 0;
-	  playO = 0;  
-	  
+	  playO = 0;
   end
 
 	

@@ -126,7 +126,7 @@ module color_controller(
 	sprite_top2 spriteO7 (clk,inicioHO7,inicioVO7,Xpos,Ypos,enableO7,rsO7,gsO7,bsO7,visibleO7);
 	sprite_top spriteX8 (clk,inicioHX8,inicioVX8,Xpos,Ypos,enableX8,rsX8,gsX8,bsX8,visibleX8);
 	sprite_top2 spriteO8 (clk,inicioHO8,inicioVO8,Xpos,Ypos,enableO8,rsO8,gsO8,bsO8,visibleO8);
-	sprite_top spriteX9 (clk,inicioHX9,inicioVX9,Xpos,Ypos,enableX9,rsX9,gsX19,bsX9,visibleX9);
+	sprite_top spriteX9 (clk,inicioHX9,inicioVX9,Xpos,Ypos,enableX9,rsX9,gsX9,bsX9,visibleX9);
 	sprite_top2 spriteO9 (clk,inicioHO9,inicioVO9,Xpos,Ypos,enableO9,rsO9,gsO9,bsO9,visibleO9);
 	always@(posedge clk)
 	begin
@@ -265,20 +265,11 @@ module color_controller(
 			Blue <= bsO9;
 		end
 		
-		else if((Xpos >= selected_square_startX) && (Xpos < selected_square_endX) && (Ypos > selected_square_startY)  && (Ypos < selected_square_endY) && ~(visibleX1 || visibleO1 || visibleX2 || visibleO2 || visibleX3 || visibleO3 || visibleX4 || visibleO4 || visibleX5 || visibleO5 || visibleX6 || visibleO6 || visibleX7 || visibleO7 || visibleX8 || visibleO8 || visibleX9 || visibleO9))
+	   if((who==2'b00) && (Xpos >= selected_square_startX) && (Xpos < selected_square_endX) && (Ypos > selected_square_startY)  && (Ypos < selected_square_endY) && ~(visibleX1 || visibleO1 || visibleX2 || visibleO2 || visibleX3 || visibleO3 || visibleX4 || visibleO4 || visibleX5 || visibleO5 || visibleX6 || visibleO6 || visibleX7 || visibleO7 || visibleX8 || visibleO8 || visibleX9 || visibleO9))
 		begin
-			if(who==2'b00)
-			begin
 			Red <= 4'b0010;
 			Green <= 4'b0010;
 			Blue <= 4'b0010;
-			end
-			else
-			begin
-			Red <= 4'b0001;
-			Green <= 4'b0001;
-			Blue <= 4'b0001;
-			end
 		end	
 		//Pos1
 		else if(Xpos >= 0 && Xpos < 213 && Ypos > 0 && Ypos < 160 && ~(visibleX1 || visibleO1))
@@ -294,14 +285,6 @@ module color_controller(
 				Red <= 4'b0001;
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
-			end
-		   if(pos1 == 2'b10)
-			begin
-				enableO1 <= 1'b1;
-			end
-		else if(pos1 == 2'b01)
-			begin
-				enableX1 <= 1'b1;
 			end
 		end
 		//Pos2
@@ -319,14 +302,6 @@ module color_controller(
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
 			end
-		   if(pos2 == 2'b10)
-			begin
-				enableO2 <= 1'b1;
-			end
-		else if(pos2 == 2'b01)
-			begin
-				enableX2 <= 1'b1;
-			end
 		end
 		//Pos3
 		else if(Xpos > 426 && Xpos < 640 && Ypos > 0 && Ypos < 160 && ~(visibleX3 || visibleO3))
@@ -342,14 +317,6 @@ module color_controller(
 				Red <= 4'b0001;
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
-			end
-		   if(pos3 == 2'b10)
-			begin
-				enableO3 <= 1'b1;
-			end
-		else if(pos3 == 2'b01)
-			begin
-				enableX3 <= 1'b1;
 			end
 		end
 		//Pos4
@@ -367,14 +334,6 @@ module color_controller(
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
 			end
-		   if(pos4 == 2'b10)
-			begin
-				enableO4 <= 1'b1;
-			end
-		else if(pos4 == 2'b01)
-			begin
-				enableX4 <= 1'b1;
-			end
 		end
 		//Pos5
 		else if(Xpos > 213 && Xpos < 426 && Ypos > 160 && Ypos < 320 && ~(visibleX5 || visibleO5))
@@ -390,14 +349,6 @@ module color_controller(
 				Red <= 4'b0001;
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
-			end
-		   if(pos5 == 2'b10)
-			begin
-				enableO5 <= 1'b1;
-			end
-		else if(pos5 == 2'b01)
-			begin
-				enableX5 <= 1'b1;
 			end
 		end
 		//pos6
@@ -415,14 +366,6 @@ module color_controller(
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
 			end
-		   if(pos6 == 2'b10)
-			begin
-				enableO6 <= 1'b1;
-			end
-		else if(pos6 == 2'b01)
-			begin
-				enableX6 <= 1'b1;
-			end
 		end
 		//Pos7
 		else if(Xpos >= 0 && Xpos < 213 && Ypos > 320 && Ypos < 480 && ~(visibleX7 || visibleO7))
@@ -438,14 +381,6 @@ module color_controller(
 				Red <= 4'b0001;
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
-			end
-		   if(pos7 == 2'b10)
-			begin
-				enableO7 <= 1'b1;
-			end
-		else if(pos7 == 2'b01)
-			begin
-				enableX7 <= 1'b1;
 			end
 		end
 		//Pos8
@@ -463,17 +398,10 @@ module color_controller(
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
 			end
-		   if(pos8 == 2'b10)
-			begin
-				enableO8 <= 1'b1;
-			end
-		else if(pos8 == 2'b01)
-			begin
-				enableX8 <= 1'b1;
-			end
 		end
 		//Pos9
 		else if(Xpos > 426 && Xpos < 640 && Ypos > 320 && Ypos < 480 && ~(visibleX9 || visibleO9))
+		begin
 			if(winner_play[8])
 			begin
 				Red <= 4'b0100;
@@ -486,13 +414,87 @@ module color_controller(
 				Green <= 4'b0001;
 				Blue <= 4'b0001;
 			end
-		   if(pos9 == 2'b10)
+		end
+		
+	   if(pos9 == 2'b10)
 			begin
 				enableO9 <= 1'b1;
 			end
-		else if(pos9 == 2'b01)
+	   if(pos9 == 2'b01)
 			begin
 				enableX9 <= 1'b1;
+			end
+		   
+		if(pos1 == 2'b10)
+			begin
+				enableO1 <= 1'b1;
+			end
+		if(pos1 == 2'b01)
+			begin
+				enableX1 <= 1'b1;
+			end
+			
+		if(pos2 == 2'b10)
+			begin
+				enableO2 <= 1'b1;
+			end
+		if(pos2 == 2'b01)
+			begin
+				enableX2 <= 1'b1;
+			end
+			
+		if(pos3 == 2'b10)
+			begin
+				enableO3 <= 1'b1;
+			end
+		if(pos3 == 2'b01)
+			begin
+				enableX3 <= 1'b1;
+			end
+			
+		if(pos4 == 2'b10)
+			begin
+				enableO4 <= 1'b1;
+			end
+		if(pos4 == 2'b01)
+			begin
+				enableX4 <= 1'b1;
+			end
+			
+		if(pos5 == 2'b10)
+			begin
+				enableO5 <= 1'b1;
+			end
+		if(pos5 == 2'b01)
+			begin
+				enableX5 <= 1'b1;
+			end
+			
+	   if(pos6 == 2'b10)
+			begin
+				enableO6 <= 1'b1;
+			end
+		if(pos6 == 2'b01)
+			begin
+				enableX6 <= 1'b1;
+			end
+			
+		if(pos7 == 2'b10)
+			begin
+				enableO7 <= 1'b1;
+			end
+		if(pos7 == 2'b01)
+			begin
+				enableX7 <= 1'b1;
+			end
+			
+		if(pos8 == 2'b10)
+			begin
+				enableO8 <= 1'b1;
+			end
+		if(pos8 == 2'b01)
+			begin
+				enableX8 <= 1'b1;
 			end
 	end
 	

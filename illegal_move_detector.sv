@@ -1,7 +1,7 @@
 module illegal_move_detector(
 	input [1:0] pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,
 	input [8:0] X_en, O_en,
-	output wire illegal_move
+	output wire illegal_move = 1'b0
 	);
 	
 	wire temp1,temp2,temp3,temp4,temp5,temp6,temp7,temp8,temp9;

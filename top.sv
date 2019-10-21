@@ -27,9 +27,10 @@ module top(
 	logic [9:0] startY, endY;
 	wire [1:0] pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9;
 	wire [1:0]	who;
-	logic [3:0] winner_play;
+	logic [8:0] winner_play;
 	wire playx,playO;
 	wire [3:0] position;
+	logic illegal_move;
 	
    clock_divider VGA_Clock_gen (clk,clk_25MHZ);
 	clk_oneSecond(clk_25MHZ, clk_oneSecond);
@@ -37,9 +38,9 @@ module top(
 	sync_btn btn (clk_25MHZ,Btn,Btnsync);
 	sync_btn rstbtn (clk_25MHZ,rst,rstsync);
 	sync_btn selbtn (clk_25MHZ,SelBtn,SelBtnsync);
-	btns_controller bnts (clk_25MHZ, rstsync, Btn, SelBtn, startX, endX, startY, endY, playX, playO, position);
-	tic_tac_toe_game game (clk_25MHZ,rstsync,playO,playX,position,position,pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,who,winner_play);
-	color_controller colorctrl (clk_25MHZ,rstsync,H_Count_Value, V_Count_Value, startX, endX, startY, endY,who, winner_play, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, color_Red, color_Green, color_Blue);
+	btns_controller bnts (clk_25MHZ, ~rst, Btn, SelBtn,illegal_move,who, startX, endX, startY, endY, playX, playO, position);
+	tic_tac_toe_game game (clk_25MHZ,~rst,playO,playX,position,position,pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,who,winner_play,illegal_move);
+	color_controller colorctrl (clk_25MHZ,~rst,H_Count_Value, V_Count_Value, startX, endX, startY, endY,who, winner_play, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, color_Red, color_Green, color_Blue);
 	deco_red decoR (color_Red, Red);
 	deco_green decoG (color_Green, Green);
 	deco_blue decoB (color_Blue, Blue);
